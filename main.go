@@ -28,7 +28,7 @@ func main() {
 
 	http.HandleFunc("/assets/gobin-icon", func(w http.ResponseWriter, r *http.Request) {
         fmt.Println(r.URL.Path)
-		http.ServeFile(w, r, "assets/gobin_icon.png")
+		http.ServeFile(w, r, "assets/gobin-icon.png")
 	})
 
 	// Start the server on port 8080
