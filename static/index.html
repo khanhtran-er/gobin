@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>hello</title>
+        <title>gobin</title>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
         <style>
             body {background-color: #000000; color: #ffffff}
@@ -16,7 +16,7 @@
             }
 
             .header {
-                border-bottom: 2px solid red;
+                border-bottom: 2px solid #dc143c;
             }
 
             .title {
@@ -25,7 +25,7 @@
             }
 
             .footer {
-                border-top: 2px solid red;
+                border-top: 2px solid #dc143c;
                 padding: 8px;
             }
 
@@ -38,8 +38,7 @@
         <div id="header" class="header"></div>
         <div id="content"></div>
         <div class="footer">
-            <a class="navi-item" href="/">@khanhtran.er</a>
-            <a class="navi-item" href="/">home</a>
+            <a class="navi-item" href="/">Home</a>
         </div>
         <script>
             let header = document.getElementById("header");
@@ -62,13 +61,12 @@
                 });
                 html += "</ul>";
 
+                document.title = "gobin";
                 header.innerHTML = `
                     <div style="display: flex; flex-direction: row; padding: 8px 0;">
-                        <img style="height: 200px; width: 200px;" src="https://lofrev.net/wp-content/photos/2016/08/random_logo_1.png"/>
+                        <img style="height: 200px; width: 200px;" src="${window.location.origin + "/assets/gobin-icon"}"/>
                         <div style="flex: 1; padding: 0 8px; height: 200px;">
-                            <h2>Hello world</h2>
-                            <p>Hello world. This is a sample paragraph that demonstrates how to use code blocks in markdown. Code blocks are useful for displaying formatted text, such as source code, poetry, lyrics, etc.</p>
-                            <p>Email | Phone number</p>
+                            <p style="color: #dc143c">Welcome to my site! This is a website that I created to showcase some of the topics that I have explored. It contains articles that reflect my interests.</p>
                         </div>
                     </div>
                 `;
@@ -96,12 +94,14 @@
                     html = converter.makeHtml(text);
 
 
-                header.innerHTML = "<p class='title'>" + fileName.substring(0, fileName.length - 3) + "</p>";
+                document.title = fileName.substring(0, fileName.length - 3);
+                header.innerHTML = "<p class='title' style='color: #dc143c;'>" + fileName.substring(0, fileName.length - 3) + "</p>";
                 content.innerHTML = html;
             }
 
             async function buildErrorPage(e) {
-                header.innerHTML = "<p class='title'>error</p>";
+                document.title = "Error";
+                header.innerHTML = "<p class='title'>Error</p>";
                 content.innerHTML = "<p>Something went wrong!</p>";
             }
         </script>
