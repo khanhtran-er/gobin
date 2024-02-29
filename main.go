@@ -3,21 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-    "io/ioutil"
-    "log"
 )
-
-func handleAssetRequest(w http.ResponseWriter, r *http.Request) {
-
-    buf, err := ioutil.ReadFile("assets/gobin_icon.png")
-
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    w.Header().Set("Content-Type", "image/png")
-    w.Write(buf)
-}
 
 func main() {
 	// Serve the HTML file at the root ("/")
@@ -26,8 +12,13 @@ func main() {
 		http.ServeFile(w, r, "static/index.html")
 	})
 
+	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Println("request: favicon icon")
+		http.ServeFile(w, r, "assets/favicon.ico")
+	})
+
 	http.HandleFunc("/assets/gobin-icon", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Println(r.URL.Path)
+        fmt.Println("request: gobin icon")
 		http.ServeFile(w, r, "assets/gobin-icon.png")
 	})
 
